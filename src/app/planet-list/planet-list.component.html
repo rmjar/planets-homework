@@ -1,8 +1,4 @@
 <div class="container">
 
-  <app-planet-detail></app-planet-detail>
-
-  <app-planet-detail></app-planet-detail>
-
-  <app-planet-detail></app-planet-detail>
+  <app-planet-detail *ngFor='let planet of planets' [planet]='planet' [class.selected]='selectedPlanet===planet'></app-planet-detail>
 </div>
