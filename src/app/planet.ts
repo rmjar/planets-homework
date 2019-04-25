@@ -57,6 +57,5 @@ export class Planet {
     this.created = attrs.created;
     this.edited = attrs.edited;
     this.url = attrs.url;
-    console.log(this);
   }
 }
