@@ -1,9 +1,6 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { PlanetListComponent } from '../planet-list/planet-list.component';
-import { fromEvent, Observable, Subscription } from 'rxjs';
-import { distinctUntilChanged, debounceTime, map, filter, bufferTime, switchMap, subscribeOn } from 'rxjs/operators';
-import { MatInput } from '@angular/material';
-import { PlanetsService } from '../planets.service';
+import { fromEvent, Subscription } from 'rxjs';
+import { distinctUntilChanged, debounceTime, map, filter } from 'rxjs/operators';
 import { SearchHelperService } from '../search-helper.service';
 
 @Component({
@@ -40,6 +37,4 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
-
 }
