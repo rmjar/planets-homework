@@ -1,6 +1,8 @@
 <div class="container">
-  <div *ngIf="planets">
+  <div *ngIf="planets.length>0">
+    <app-browse-buttons></app-browse-buttons>
     <app-planet-detail *ngFor='let planet of planets' [planet]='planet' [class.selected]='selectedPlanet===planet'>
     </app-planet-detail>
+    <app-browse-buttons></app-browse-buttons>
   </div>
 </div>
