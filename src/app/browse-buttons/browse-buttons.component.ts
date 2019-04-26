@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-browse-buttons',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./browse-buttons.component.css']
 })
 export class BrowseButtonsComponent implements OnInit {
+  // @Input()
+  // navigationLinks: NavigationLinks;
 
   constructor() { }
 

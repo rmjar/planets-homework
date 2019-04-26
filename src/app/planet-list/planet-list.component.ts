@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, OnDestroy, AfterViewInit } from '@angular/core';
 import { PlanetsService } from '../planets.service';
-import { Planet } from '../planet';
+import { Planet, DataApi } from '../planet';
 import { SearchHelperService } from '../search-helper.service';
 import { Subscription } from 'rxjs';
 
@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class PlanetListComponent implements AfterViewInit, OnDestroy {
   planets: Planet[] = [];
+  data: DataApi = null;
   selectedPlanet: Planet = null;
 
   private subscription: Subscription;
