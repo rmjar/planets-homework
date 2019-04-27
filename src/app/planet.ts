@@ -6,6 +6,12 @@ export interface ApiAttrs {
   results: Planet[];
 }
 
+
+export interface NavigationLinksAttrs {
+  previous: string;
+  next: string;
+}
+
 export interface PlanetAttrs {
   name: string;
   rotation_period: number;
@@ -68,5 +74,15 @@ export class Planet {
     this.created = attrs.created;
     this.edited = attrs.edited;
     this.url = attrs.url;
+  }
+}
+
+export class NavigationLinks {
+  previous: string;
+  next: string;
+
+  constructor (attrs: Partial<NavigationLinksAttrs> = {}) {
+    this.previous = attrs.previous;
+    this.next = attrs.next;
   }
 }

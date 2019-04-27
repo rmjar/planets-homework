@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { NavigationLinks } from '../planet';
 
 @Component({
   selector: 'app-browse-buttons',
@@ -6,12 +7,17 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./browse-buttons.component.css']
 })
 export class BrowseButtonsComponent implements OnInit {
-  // @Input()
-  // navigationLinks: NavigationLinks;
+  @Input() navigationLinks: NavigationLinks;
+
+  @Output() clickedLink = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  clickLink(link: string): void {
+    this.clickedLink.emit(link);
   }
 
 }

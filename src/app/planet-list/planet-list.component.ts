@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, OnDestroy, AfterViewInit } from '@angular/core';
 import { PlanetsService } from '../planets.service';
-import { Planet, DataApi } from '../planet';
+import { Planet, DataApi, NavigationLinks } from '../planet';
 import { SearchHelperService } from '../search-helper.service';
 import { Subscription } from 'rxjs';
 
@@ -11,21 +11,28 @@ import { Subscription } from 'rxjs';
 })
 export class PlanetListComponent implements AfterViewInit, OnDestroy {
   planets: Planet[] = [];
+  navigationLinks: NavigationLinks = {
+    previous: null,
+    next: null,
+  };
+
   data: DataApi = null;
   selectedPlanet: Planet = null;
+  clickedLink: string = null;
 
   private subscription: Subscription;
   private subscriptionHttp: Subscription;
 
+
   @Output() selected = new EventEmitter<Planet>();
 
   constructor(private planetService: PlanetsService, private searchService: SearchHelperService) {
-    this.subscriptionHttp = this.planetHttpSubs();
+    this.subscriptionHttp = this.dataHttpSubs();
   }
 
   ngAfterViewInit() {
     this.subscription = this.searchService.searchSource$.subscribe({
-      next: value => this.subscriptionHttp = this.planetHttpSubs(value),
+      next: value => this.subscriptionHttp = this.dataHttpSubs(null, value),
       error: err => console.log(err),
     });
   }
@@ -40,12 +47,24 @@ export class PlanetListComponent implements AfterViewInit, OnDestroy {
     this.selected.emit(planet);
   }
 
-  private planetHttpSubs(searchTerm: string = null): Subscription {
+  clickedLinkListener(event) {
+    this.clickedLink = event;
+    if (this.subscriptionHttp) {
+      this.subscriptionHttp.unsubscribe();
+    }
+    this.subscriptionHttp = this.dataHttpSubs(this.clickedLink);
+  }
+
+  private dataHttpSubs(link: string = null, searchTerm: string = null): Subscription {
     return this.planetService
-      .getPlanets(searchTerm).subscribe({
-        next: planets => (this.planets = planets),
+      .getData(link, searchTerm).subscribe({
+        next: data => {
+          const {results, previous, next} = data;
+          this.planets = results;
+          this.navigationLinks.previous = previous;
+          this.navigationLinks.next = next;
+        },
         error: () => alert('Service not available')
       });
   }
-
 }

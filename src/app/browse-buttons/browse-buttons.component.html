@@ -1,10 +1,17 @@
 <div class="container-flex">
 
-  <button mat-raised-button disabled=true class="mat-raised-button">
-    Klik 1
+  <button *ngIf="navigationLinks.previous ; else buttonDisabled" mat-raised-button disabled=false class="mat-raised-button" (click)="clickLink(navigationLinks.previous)">
+    Previous page
   </button>
 
-  <button mat-button class="mat-button">
-    Klik 2
+  <button *ngIf="navigationLinks.next ; else buttonDisabled" mat-raised-button disabled=false class="mat-raised-button" (click)="clickLink(navigationLinks.next)">
+    Next page
   </button>
+
+  <ng-template #buttonDisabled>
+    <button  mat-raised-button disabled=true class="mat-raised-button">
+      No page
+    </button>
+  </ng-template>
 </div>
+
