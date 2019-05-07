@@ -17,14 +17,11 @@ export class PlanetListComponent implements AfterViewInit, OnDestroy {
   };
 
   data: DataApi = null;
-  selectedPlanet: Planet = null;
   clickedLink: string = null;
 
   private subscription: Subscription;
   private subscriptionHttp: Subscription;
 
-
-  @Output() selected = new EventEmitter<Planet>();
 
   constructor(private planetService: PlanetsService, private searchService: SearchHelperService) {
     this.subscriptionHttp = this.dataHttpSubs();
@@ -40,11 +37,6 @@ export class PlanetListComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptionHttp.unsubscribe();
     this.subscription.unsubscribe();
-  }
-
-  select(planet: Planet): void {
-    this.selectedPlanet = planet;
-    this.selected.emit(planet);
   }
 
   clickedLinkListener(event) {

@@ -10,6 +10,7 @@ export class PlanetCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

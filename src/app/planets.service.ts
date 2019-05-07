@@ -23,4 +23,10 @@ export class PlanetsService {
     return this.http
       .get<ApiAttrs>(URL);
   }
+
+  getPlanet(URL: string) : Observable<Planet> {
+
+    return this.http
+    .get<Planet>(URL);
+  }
 }

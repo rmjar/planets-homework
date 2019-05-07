@@ -15,6 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { PlanetCardComponent } from './planet-card/planet-card.component';
 import { BrowseButtonsComponent } from './browse-buttons/browse-buttons.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { BrowseButtonsComponent } from './browse-buttons/browse-buttons.componen
     PlanetDetailComponent,
     PlanetCardComponent,
     BrowseButtonsComponent,
+    MainPageComponent,
   ],
   imports: [
     BrowserModule,

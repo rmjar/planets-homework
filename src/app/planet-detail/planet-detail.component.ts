@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Planet } from '../planet';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-planet-detail',
@@ -12,6 +13,11 @@ export class PlanetDetailComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getPlanetId(): string {
+    const url = this.planet.url.substr(0, this.planet.url.length - 1);
+    return url.substr(url.lastIndexOf('/') + 1);
   }
 
 }

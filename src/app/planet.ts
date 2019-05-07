@@ -29,19 +29,7 @@ export interface PlanetAttrs {
   url: string;
 }
 
-export class DataApi {
-  count: number;
-  next: string;
-  previous: string;
-  results: Planet[];
 
-  constructor(attrs: Partial<ApiAttrs> = {}) {
-    this.count = attrs.count;
-    this.next = attrs.next;
-    this.previous = attrs.previous;
-    this.results = attrs.results.map(planet => new Planet(planet));
-  }
-}
 
 export class Planet {
   name: string;
@@ -76,7 +64,19 @@ export class Planet {
     this.url = attrs.url;
   }
 }
+export class DataApi {
+  count: number;
+  next: string;
+  previous: string;
+  results: Planet[];
 
+  constructor(attrs: Partial<ApiAttrs> = {}) {
+    this.count = attrs.count;
+    this.next = attrs.next;
+    this.previous = attrs.previous;
+    this.results = attrs.results.map(planet => new Planet(planet));
+  }
+}
 export class NavigationLinks {
   previous: string;
   next: string;
