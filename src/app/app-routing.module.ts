@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {path: '', component: MainPageComponent},
-  {path: 'planets/:id', component: PlanetCardComponent},
+  {path: 'planets/:id', component: PlanetCardComponent,},
   {path: '**', redirectTo: '/'}
 ];
 

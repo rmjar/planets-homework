@@ -4,6 +4,8 @@ import { ApiAttrs, Planet } from './planet';
 import { Observable } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
 
+const basePlanetURL = 'https://swapi.co/api/planets/';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,9 +14,8 @@ export class PlanetsService {
   constructor(private http: HttpClient) { }
 
   getData(link: string = null, searchTerm: string = null): Observable<ApiAttrs> {
-    const baseURL = 'https://swapi.co/api/planets/';
     const searchURL = '?search=';
-    let URL = link ? link : baseURL;
+    let URL = link ? link : basePlanetURL;
 
     if (searchTerm && searchTerm.length > 0) {
       URL = `${URL}${searchURL}${searchTerm}`;
@@ -24,9 +25,15 @@ export class PlanetsService {
       .get<ApiAttrs>(URL);
   }
 
-  getPlanet(URL: string) : Observable<Planet> {
-
+  getPlanet(URL: string): Observable<Planet> {
     return this.http
-    .get<Planet>(URL);
+      .get<Planet>(URL);
+  }
+
+  getPlanetByID(id: string): Observable<Planet> {
+    const URL = `${basePlanetURL}${id}`;
+    return this.http
+      .get<Planet>(URL);
+
   }
 }

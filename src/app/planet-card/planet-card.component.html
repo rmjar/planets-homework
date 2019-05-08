@@ -1,3 +1,15 @@
-<p>
-  planet-card works!
-</p>
+<div class="container">
+  <div *ngIf="planet">
+    <mat-card class="planet-card-margin">
+      <mat-card-header>
+        <mat-card-title>{{planet.name}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Rotation period: {{ planet.rotation_period }}</p>
+        <p>Diameter: {{planet.diameter}}</p>
+      </mat-card-content>
+
+      <button mat-raised-button class="mat-raised-button" ><a routerLink="/">Return</a></button>
+    </mat-card>
+  </div>
+</div>
